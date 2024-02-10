@@ -8,7 +8,9 @@ export const AuthOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     })
   ],
-  theme: {},
+  theme: {
+    logo: '/logo-text-white.svg'
+  },
   callbacks: {
     async session({ session, token, user }) {
       (session as any).user.id = token.sub;
