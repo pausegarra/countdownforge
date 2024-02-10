@@ -13,9 +13,9 @@ export async function NavBar() {
     <nav className="navbar bg-base-100">
       <div className="container mx-auto">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">
+          <Link href="/" className="">
             <Image src={logo} alt='logo' height={40} />
-          </a>
+          </Link>
         </div>
         <div className="flex-none gap-2">
           <ul className="menu menu-horizontal px-1">
@@ -26,12 +26,13 @@ export async function NavBar() {
                   <Link href="/my-countdowns">My countdowns</Link>
                 </li>
                 <div className="dropdown dropdown-end">
-                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
+                  <div tabIndex={0} role="button" className="btn btn-ghost">
+                    <div className="w-10 rounded-full overflow-hidden">
                       <img alt="Tailwind CSS Navbar component" src={session.user.image || ''} />
                     </div>
+                    <span>{session.user.name}</span>
                   </div>
-                  <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                  <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 border border-gray-700">
                     <LogoutButton />
                   </ul>
                 </div>
