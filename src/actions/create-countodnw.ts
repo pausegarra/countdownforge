@@ -32,8 +32,8 @@ export async function createCountdownAction(prevState: any, formData: FormData) 
   const session = await getSession()
 
   await exec({
-    query: "insert into countdowns (id, name, is_public, user_id) values (?,?,?,?)",
-    values: [v4(), validated.data.name, formData.get('is_public') === 'on', (session?.user as any).id]
+    query: "insert into countdowns (id, name, is_public, user_id, target) values (?,?,?,?,?)",
+    values: [v4(), validated.data.name, formData.get('is_public') === 'on', (session?.user as any).id, validated.data.target]
   });
 
   revalidatePath('/my-countdowns');

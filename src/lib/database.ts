@@ -15,12 +15,12 @@ interface Args {
   values?: any[];
 }
 
-export default async function exec({ query, values }: Args) {
+export default async function exec<T>({ query, values }: Args): Promise<T> {
   try {
-    const results = await db.query(query, values);
+    const results: T = await db.query(query, values);
     await db.end();
     return results;
   } catch (error) {
-    return { error };
+    return { error } as any;
   }
 }
