@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default async function Page() {
   const session = await getSession();
-  const countdowns: any = await exec({ query: 'select * from countdowns where user_id = ?', values: [(session?.user as any).id] })
+  const countdowns: any = await exec({ query: 'select * from countdowns where user_id = ? order by created_at desc', values: [(session?.user as any).id] })
 
   return (
     <div className="container mx-auto mt-4">
