@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { v4 } from 'uuid';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { getSession } from '@/helpers/get-session';
 
 const schema = z.object({
   name: z.string({
@@ -28,9 +29,11 @@ export async function createCountdownAction(prevState: any, formData: FormData) 
     };
   }
 
+  const session = await getSession()
+
   await exec({
-    query: "insert into countdowns (id, name, is_public) values (?,?,?)",
-    values: [v4(), validated.data.name, formData.get('is_public') === 'on']
+    query: "insert into countdowns (id, name, is_public, user_id) values (?,?,?,?)",
+    values: [v4(), validated.data.name, formData.get('is_public') === 'on', (session?.user as any).id]
   });
 
   revalidatePath('/my-countdowns');
