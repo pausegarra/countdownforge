@@ -1,5 +1,6 @@
 import { Countdown } from '@/types';
 import Link from 'next/link';
+import { RemoveButton } from './remove-button';
 
 interface Props {
   countdown: Countdown;
@@ -15,7 +16,7 @@ export function CountdownCard({ countdown }: Props) {
         <div className="card-actions justify-end">
           <Link href={`/countdown/${countdown.id}`} className="btn">View</Link>
           <Link href={`/my-countdowns/${countdown.id}/edit`} className="btn btn-warning">Edit</Link>
-          <button className="btn btn-error">Remove</button>
+          <RemoveButton id={countdown.id} />
         </div>
       </div>
     </div>
