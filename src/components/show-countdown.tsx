@@ -44,25 +44,25 @@ export function ShowCountdown({ countdown }: Props) {
     <div className="grid grid-flow-col gap-5 justify-center auto-cols-max">
       <div className="flex flex-col">
         <span className="countdown font-mono text-5xl">
-          <span style={{ "--value": timeLeft.days }}>{timeLeft.days}</span>
+          <span style={{ "--value": timeLeft.days } as any}>{timeLeft.days}</span>
         </span>
         days
       </div>
       <div className="flex flex-col">
         <span className="countdown font-mono text-5xl">
-          <span style={{ "--value": timeLeft.hours }}>{timeLeft.hours}</span>
+          <span style={{ "--value": timeLeft.hours } as any}>{timeLeft.hours}</span>
         </span>
         hours
       </div>
       <div className="flex flex-col">
         <span className="countdown font-mono text-5xl">
-          <span style={{ "--value": timeLeft.minutes }}>{timeLeft.minutes}</span>
+          <span style={{ "--value": timeLeft.minutes } as any}>{timeLeft.minutes}</span>
         </span>
         min
       </div>
       <div className="flex flex-col">
         <span className="countdown font-mono text-5xl">
-          <span style={{ "--value": timeLeft.seconds }}>{timeLeft.seconds}</span>
+          <span style={{ "--value": timeLeft.seconds } as any}>{timeLeft.seconds}</span>
         </span>
         sec
       </div>
