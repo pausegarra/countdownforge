@@ -1,4 +1,5 @@
 import { Countdown } from '@/types';
+import Link from 'next/link';
 
 interface Props {
   countdown: Countdown;
@@ -12,7 +13,7 @@ export function CountdownCard({ countdown }: Props) {
         <p>Target: {countdown.target.toLocaleString()}</p>
         <p>Public: {countdown.is_public ? 'Yes' : 'No'}</p>
         <div className="card-actions justify-end">
-          <button className="btn">View</button>
+          <Link href={`/countdown/${countdown.id}`} className="btn">View</Link>
           <button className="btn btn-warning">Edit</button>
           <button className="btn btn-error">Remove</button>
         </div>
