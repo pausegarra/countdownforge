@@ -6,16 +6,17 @@ interface Props {
   trLabel?: string;
   brLabel?: string;
   error?: string;
+  value?: string;
 }
 
-export function TextInput({ label, name, placeholder, trLabel, brLabel, type = 'text', error }: Props) {
+export function TextInput({ label, name, placeholder, trLabel, brLabel, type = 'text', error, value }: Props) {
   return (
     <div className="form-control w-full">
       <div className="label">
         <label className="label-text">{label}</label>
         {trLabel && <span className="label-text-alt">{trLabel}</span>}
       </div>
-      <input type={type} placeholder={placeholder} name={name} className="input input-bordered w-full" />
+      <input type={type} placeholder={placeholder} name={name} className="input input-bordered w-full" defaultValue={value} />
       <div className="label">
         {error && <span className="label-text-alt text-error font-bold">{error}</span>}
         {brLabel && <span className="label-text-alt">{brLabel}</span>}

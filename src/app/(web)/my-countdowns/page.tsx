@@ -14,7 +14,7 @@ export default async function Page() {
         <h1 className='text-4xl'>My Countdowns</h1>
         <Link href="/my-countdowns/add" className='btn btn-primary'><span className='text-2xl font-bold'>+</span> Add Countdown</Link>
       </div>
-      <div className="grid gird-cols-1 lg:grid-cols-2 xl:grid-cols-3 justify-center">
+      <div className="grid gird-cols-1 lg:grid-cols-2 xl:grid-cols-3 justify-center gap-5">
         {countdowns.map((countdown) => <CountdownCard countdown={countdown} />)}
       </div>
     </div>
