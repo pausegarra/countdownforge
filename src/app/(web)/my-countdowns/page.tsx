@@ -7,6 +7,7 @@ import Link from 'next/link';
 export default async function Page() {
   const session = await getSession();
   const countdowns = await exec<Countdown[]>({ query: 'select * from countdowns where user_id = ? order by created_at desc', values: [(session?.user as any).id] })
+  console.log('countdowns', countdowns);
 
   return (
     <div className="container mx-auto mt-4">
@@ -15,7 +16,7 @@ export default async function Page() {
         <Link href="/my-countdowns/add" className='btn btn-primary'><span className='text-2xl font-bold'>+</span> Add Countdown</Link>
       </div>
       <div className="grid gird-cols-1 lg:grid-cols-2 xl:grid-cols-3 justify-center gap-5">
-        {countdowns.map((countdown) => <CountdownCard countdown={countdown} />)}
+        {countdowns?.map((countdown) => <CountdownCard countdown={countdown} />)}
       </div>
     </div>
   );
