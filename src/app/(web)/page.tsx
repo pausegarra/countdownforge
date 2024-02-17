@@ -3,9 +3,9 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <main className="">
-      <section className="text-center py-20">
-        <h1 className="text-4xl font-bold">Easily Create Custom Countdowns</h1>
-        <p className="text-xl mt-4 mb-8">A free tool to countdown to your significant events in style.</p>
+      <section className="text-center py-20 bg-[url('/hero.webp')] bg-center bg-cover bg-no-repeat">
+        <h1 className="text-4xl font-bold text-[0.6569 0.196 275.75]">Easily Create Custom Countdowns</h1>
+        <p className="text-xl mt-4 mb-8 text-[0.6569 0.196 275.75]">A free tool to countdown to your significant events in style.</p>
         <Link href={'/my-countdowns/add'} className="btn btn-primary">Create Your Countdown</Link>
       </section>
 
