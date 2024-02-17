@@ -2,6 +2,7 @@ import { ShowCountdown } from '@/components/show-countdown';
 import { getSession } from '@/helpers/get-session';
 import exec from '@/lib/database';
 import { Countdown } from '@/types';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 interface Props {
@@ -28,6 +29,9 @@ export default async function Page({ params }: Props) {
             <ShowCountdown countdown={{ ...countdown }} />
           </div>
         </div>
+      </div>
+      <div className='absolute bottom-10 right-10'>
+        powered by <Link href="/" className='text-primary'>CountdownForge</Link>
       </div>
     </div>
   );
