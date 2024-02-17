@@ -1,13 +1,14 @@
-import mysql from 'serverless-mysql';
+import { createPool } from 'mysql2/promise';
 
-const db = mysql({
-  config: {
-    host: process.env.MYSQL_HOST,
-    port: 3306,
-    database: process.env.MYSQL_DATABASE,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD
-  }
+const pool = createPool({
+  host: process.env.MYSQL_HOST,
+  port: 3306,
+  database: process.env.MYSQL_DATABASE,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
 interface Args {
@@ -15,11 +16,10 @@ interface Args {
   values?: any[];
 }
 
-export default async function exec<T>({ query, values }: Args): Promise<T> {
+export default async function exec<T>({ query, values = [] }: Args): Promise<T> {
   try {
-    const results: T = await db.query(query, values);
-    await db.end();
-    return results;
+    const [results] = await pool.query(query, values);
+    return results as T;
   } catch (error) {
     return { error } as any;
   }
