@@ -10,6 +10,8 @@ interface Props {
 const calculateTimeLeft = (targetDate: Date) => {
   const difference = +new Date(targetDate) - +new Date();
   let timeLeft = {
+    years: 0,
+    months: 0,
     days: 0,
     hours: 0,
     minutes: 0,
@@ -17,12 +19,13 @@ const calculateTimeLeft = (targetDate: Date) => {
   };
 
   if (difference > 0) {
-    timeLeft = {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
-    };
+    const totalDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+    timeLeft.years = Math.floor(totalDays / 365);
+    timeLeft.months = Math.floor((totalDays % 365) / 30); // Aproximación simple, puede ajustarse para mayor precisión
+    timeLeft.days = Math.floor(totalDays % 365 % 30);
+    timeLeft.hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    timeLeft.minutes = Math.floor((difference / 1000 / 60) % 60);
+    timeLeft.seconds = Math.floor((difference / 1000) % 60);
   }
 
   return timeLeft;
@@ -42,6 +45,22 @@ export function ShowCountdown({ countdown }: Props) {
 
   return (
     <div className="grid grid-flow-col gap-5 justify-center auto-cols-max">
+      {timeLeft.years > 0 && (
+        <div className="flex flex-col">
+          <span className="countdown font-mono text-5xl">
+            <span style={{ "--value": timeLeft.years } as any}>{timeLeft.years}</span>
+          </span>
+          years
+        </div>
+      )}
+      {timeLeft.months > 0 && (
+        <div className="flex flex-col">
+          <span className="countdown font-mono text-5xl">
+            <span style={{ "--value": timeLeft.months } as any}>{timeLeft.months}</span>
+          </span>
+          months
+        </div>
+      )}
       <div className="flex flex-col">
         <span className="countdown font-mono text-5xl">
           <span style={{ "--value": timeLeft.days } as any}>{timeLeft.days}</span>
