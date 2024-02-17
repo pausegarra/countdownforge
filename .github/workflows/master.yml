@@ -43,5 +43,9 @@ jobs:
             -e MYSQL_USER=${{ secrets.DB_USERNAME }} \
             -e MYSQL_PASSWORD=${{ secrets.DB_PASSWORD }} \
             -e MYSQL_DATABASE=${{ secrets.DB_DATABASE }} \
+            -e GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} \
+            -e GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} \
+            -e NEXTAUTH_URL=https://countdownforge.com \
+            -e NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} \
             psegarra/countdownforge:latest
           docker image prune -f
