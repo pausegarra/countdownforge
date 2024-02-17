@@ -44,43 +44,39 @@ export function ShowCountdown({ countdown }: Props) {
   }, [countdown.target]);
 
   return (
-    <div className="grid grid-flow-col gap-5 justify-center auto-cols-max">
-      {timeLeft.years > 0 && (
-        <div className="flex flex-col">
-          <span className="countdown font-mono text-5xl">
-            <span style={{ "--value": timeLeft.years } as any}>{timeLeft.years}</span>
-          </span>
-          years
-        </div>
-      )}
-      {timeLeft.months > 0 && (
-        <div className="flex flex-col">
-          <span className="countdown font-mono text-5xl">
-            <span style={{ "--value": timeLeft.months } as any}>{timeLeft.months}</span>
-          </span>
-          months
-        </div>
-      )}
+    <div className="flex flex-wrap justify-center gap-4 text-center">
       <div className="flex flex-col">
-        <span className="countdown font-mono text-5xl">
+        <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-4xl flex justify-center">
+          <span style={{ "--value": timeLeft.years } as any} className='text-center'>{timeLeft.years}</span>
+        </span>
+        years
+      </div>
+      <div className="flex flex-col">
+        <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-4xl flex justify-center">
+          <span style={{ "--value": timeLeft.months } as any}>{timeLeft.months}</span>
+        </span>
+        months
+      </div>
+      <div className="flex flex-col">
+        <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-4xl flex justify-center">
           <span style={{ "--value": timeLeft.days } as any}>{timeLeft.days}</span>
         </span>
         days
       </div>
       <div className="flex flex-col">
-        <span className="countdown font-mono text-5xl">
+        <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-4xl flex justify-center">
           <span style={{ "--value": timeLeft.hours } as any}>{timeLeft.hours}</span>
         </span>
         hours
       </div>
       <div className="flex flex-col">
-        <span className="countdown font-mono text-5xl">
+        <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-4xl flex justify-center">
           <span style={{ "--value": timeLeft.minutes } as any}>{timeLeft.minutes}</span>
         </span>
         min
       </div>
       <div className="flex flex-col">
-        <span className="countdown font-mono text-5xl">
+        <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-4xl flex justify-center">
           <span style={{ "--value": timeLeft.seconds } as any}>{timeLeft.seconds}</span>
         </span>
         sec
