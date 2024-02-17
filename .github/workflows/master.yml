@@ -40,9 +40,9 @@ jobs:
             --add-host=host.docker.internal:host-gateway \
             -e NODE_ENV=production \
             -e MYSQL_HOST=host.docker.internal \
-            -e MYSQL_USER=${{ secrets.DB_USERNAME }} \
-            -e MYSQL_PASSWORD=${{ secrets.DB_PASSWORD }} \
-            -e MYSQL_DATABASE=${{ secrets.DB_DATABASE }} \
+            -e MYSQL_USER=${{ secrets.MYSQL_USER }} \
+            -e MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }} \
+            -e MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }} \
             -e GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} \
             -e GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} \
             -e NEXTAUTH_URL=https://countdownforge.com \
