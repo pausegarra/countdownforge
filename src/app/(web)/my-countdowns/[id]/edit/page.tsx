@@ -15,7 +15,7 @@ export default async function({ params }: Props) {
   const [countdown] = countdowns;
 
   return (
-    <div className="container mx-auto mt-4">
+    <div className="container mx-auto my-4">
       <h1 className="text-4xl">Edit countdown</h1>
       <EditCountdownForm countdown={{ ...countdown }} />
     </div>

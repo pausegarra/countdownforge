@@ -10,7 +10,7 @@ export default async function Page() {
   console.log('countdowns', countdowns);
 
   return (
-    <div className="container mx-auto mt-4">
+    <div className="container mx-auto my-4">
       <div className="flex justify-between">
         <h1 className='text-4xl'>My Countdowns</h1>
         <Link href="/my-countdowns/add" className='btn btn-primary'><span className='text-2xl font-bold'>+</span> Add Countdown</Link>

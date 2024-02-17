@@ -1,10 +1,12 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <main className="">
       <section className="text-center py-20">
         <h1 className="text-4xl font-bold">Easily Create Custom Countdowns</h1>
         <p className="text-xl mt-4 mb-8">A free tool to countdown to your significant events in style.</p>
-        <a href="#" className="btn btn-primary">Create Your Countdown</a>
+        <Link href={'/my-countdowns/add'} className="btn btn-primary">Create Your Countdown</Link>
       </section>
 
       <section className="container mx-auto text-center py-20">
