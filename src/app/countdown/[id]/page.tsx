@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default async function Page({ params }: Props) {
-  const session = await getSession()
+  const session = await getSession();
   const results = await exec<Countdown[]>({ query: 'select * from countdowns where id = ?', values: [params.id] });
   const countdown = results[0];
 
@@ -21,16 +21,16 @@ export default async function Page({ params }: Props) {
   }
 
   return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
+    <div className="min-h-screen flex flex-col justify-center bg-base-200">
+      <div className="text-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-full mx-auto">
           <h1 className="text-5xl font-bold">{countdown.name}</h1>
           <div className="py-6">
             <ShowCountdown countdown={{ ...countdown }} />
           </div>
         </div>
       </div>
-      <div className='absolute bottom-10 right-10'>
+      <div className='absolute bottom-10 right-10 px-4 sm:px-6 lg:px-8'>
         powered by <Link href="/" className='text-primary'>CountdownForge</Link>
       </div>
     </div>
