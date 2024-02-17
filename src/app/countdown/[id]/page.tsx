@@ -1,6 +1,8 @@
 import { ShowCountdown } from '@/components/show-countdown';
+import { getSession } from '@/helpers/get-session';
 import exec from '@/lib/database';
 import { Countdown } from '@/types';
+import { notFound } from 'next/navigation';
 
 interface Props {
   params: {
@@ -9,8 +11,13 @@ interface Props {
 }
 
 export default async function Page({ params }: Props) {
+  const session = await getSession()
   const results = await exec<Countdown[]>({ query: 'select * from countdowns where id = ?', values: [params.id] });
   const countdown = results[0];
+
+  if (!countdown.is_public && (session?.user as any)?.id !== countdown.user_id) {
+    notFound();
+  }
 
   return (
     <div className="hero min-h-screen bg-base-200">
