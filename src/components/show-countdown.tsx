@@ -8,7 +8,8 @@ interface Props {
 }
 
 const calculateTimeLeft = (targetDate: Date) => {
-  const difference = +new Date(targetDate) - +new Date();
+  const now = new Date();
+  const difference = +targetDate - +now;
   let timeLeft = {
     years: 0,
     months: 0,
@@ -19,17 +20,40 @@ const calculateTimeLeft = (targetDate: Date) => {
   };
 
   if (difference > 0) {
-    const totalDays = Math.floor(difference / (1000 * 60 * 60 * 24));
-    timeLeft.years = Math.floor(totalDays / 365);
-    timeLeft.months = Math.floor((totalDays % 365) / 30); // Aproximación simple, puede ajustarse para mayor precisión
-    timeLeft.days = Math.floor(totalDays % 365 % 30);
+    // Calcula años
+    timeLeft.years = targetDate.getFullYear() - now.getFullYear();
+    // Ajusta meses
+    let monthsDifference = targetDate.getMonth() - now.getMonth();
+    if (monthsDifference < 0) {
+      monthsDifference += 12;
+      timeLeft.years--;
+    }
+    timeLeft.months = monthsDifference;
+
+    // Ajusta días
+    let daysDifference = targetDate.getDate() - now.getDate();
+    if (daysDifference < 0) {
+      // Encuentra el último día del mes anterior
+      const lastDayOfPreviousMonth = new Date(targetDate.getFullYear(), targetDate.getMonth(), 0).getDate();
+      daysDifference += lastDayOfPreviousMonth;
+      if (timeLeft.months === 0) {
+        timeLeft.years--;
+        timeLeft.months = 11;
+      } else {
+        timeLeft.months--;
+      }
+    }
+    timeLeft.days = daysDifference;
+
+    // Calcula horas, minutos y segundos
     timeLeft.hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-    timeLeft.minutes = Math.floor((difference / 1000 / 60) % 60);
+    timeLeft.minutes = Math.floor((difference / (1000 * 60)) % 60);
     timeLeft.seconds = Math.floor((difference / 1000) % 60);
   }
 
   return timeLeft;
 };
+
 
 export function ShowCountdown({ countdown }: Props) {
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(new Date(countdown.target)));
