@@ -56,11 +56,11 @@ const calculateTimeLeft = (targetDate: Date) => {
 
 
 export function ShowCountdown({ countdown }: Props) {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(new Date(countdown.target)));
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(countdown.target));
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const timeLeftCalc = calculateTimeLeft(new Date(countdown.target));
+      const timeLeftCalc = calculateTimeLeft(countdown.target);
       setTimeLeft(timeLeftCalc);
     }, 1000);
 
@@ -69,18 +69,22 @@ export function ShowCountdown({ countdown }: Props) {
 
   return (
     <div className="flex flex-wrap justify-center gap-4 text-center">
-      <div className="flex flex-col">
-        <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-7xl flex justify-center">
-          <span style={{ "--value": timeLeft.years } as any} className='text-center'>{timeLeft.years}</span>
-        </span>
-        years
-      </div>
-      <div className="flex flex-col">
-        <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-7xl flex justify-center">
-          <span style={{ "--value": timeLeft.months } as any}>{timeLeft.months}</span>
-        </span>
-        months
-      </div>
+      {timeLeft.years ? (
+        <div className="flex flex-col">
+          <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-7xl flex justify-center">
+            <span style={{ "--value": timeLeft.years } as any} className='text-center'>{timeLeft.years}</span>
+          </span>
+          years
+        </div>
+      ) : null}
+      {timeLeft.months ? (
+        <div className="flex flex-col">
+          <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-7xl flex justify-center">
+            <span style={{ "--value": timeLeft.months } as any}>{timeLeft.months}</span>
+          </span>
+          months
+        </div>
+      ) : null}
       <div className="flex flex-col">
         <span className="countdown font-mono text-xl sm:text-2xl md:text-3xl lg:text-7xl flex justify-center">
           <span style={{ "--value": timeLeft.days } as any}>{timeLeft.days}</span>
